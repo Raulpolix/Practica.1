@@ -1,53 +1,58 @@
-    #Definimos las veelocidades de la luz en distintos medios
-luzvacio = 299792    
-luzagua = 224844
-luzaire = 299708
-   
-    #Introducimos al usuario al ejemplo hipotetico
-print("Buenas tardes, vamos a calcular la distancia en años luz de diferentes objeetos,")
+"""
+Este programa calcula la distancia a la que está un objeto en años luz tenieendo cuenta el medio.
 
-    #Le proponmos los tres casos y que decida el usuario uno de ellos
-pregunta = float(input("Introduce el medio por el que se propaga la luz de la distancia que quierees medir (1=vacio, 2=agua, 3=atmosfera): "))
-   
-    #Definimos lo que pude pasar en cada una de las opciones
-if pregunta > 0 and pregunta < 2:
-    
-    def calc_luzvacio(kilometros):      #Formula para el medio "vacio"
-        añosluz = (kilometros/(luzvacio*365.25*86400))
+El ejemplo puede ser absurdo ya que no hay un universo de agua, pero quermos demostrar que el medio influye en la velocidad de la luz.
+"""
+
+
+#Definimos las velocidades de la luz en distintos medios
+luz_vacio = 299792    
+luz_agua = 224844
+luz_aire = 299708
+
+#Definimos la fórmula para calcular la velocidad de la luz segun el medio.
+def calc_luz(velocidad_medio,kilom_in):      
+        añosluz = (kilom_in/(velocidad_medio*365.25*86400))
        
         return añosluz   
-      
-       #Introducimos los kilometros de separacion con el objto
-    kilom_in=float(input("Introduce a que distancia esta el objeto en cuestion "))
 
-    luzvacio_calc= calc_luzvacio(kilom_in)
-    print("Tu objeto está a :",luzvacio_calc,"Años luz")
+   
+#Introducimos al usuario al ejemplo hipotetico
+print("Buenas tardes, vamos a calcular la distancia en años luz de diferentes objetos,")
+
+
+try:
+ #Le proponmos los tres casos y que decida el usuario uno de ellos
+ pregunta = float(input("Introduce el medio por el que se propaga la luz de la distancia que quieres medir (1=vacío, 2=agua, 3=atmósfera): "))
+
+ kilom_in=float(input("Introduce a que distancia está el objeto en kilómetros "))
+
+except:
+ print("Algún dato está mal, inténtalo de nuevo, por favor.")  
+ pregunta = float(input("Introduce el medio por el que se propaga la luz de la distancia que quieres medir (1=vacío, 2=agua, 3=atmósfera): "))
+
+ kilom_in=float(input("Introduce a que distancia esta el objeto en kilómetros "))
+
+
+
+#Definimos lo que puede pasar en cada una de las opciones
+if pregunta == 1:
+    velocidad_medio = luz_vacio
+   
+elif pregunta == 2:
+
+    velocidad_medio = luz_agua
+
+elif pregunta == 3:
+
+    velocidad_medio = luz_aire
     
-elif pregunta >1 and pregunta <3:
-
-    def calc_luzagua(kilometros):   #Formula para el medio "agua"
-        añosluz = (kilometros/(luzagua*365.25*86400))
-       
-        return añosluz
     
-             #Introducimos los kilometros de separacion con el objto
-    kilom_in=float(input("Introduce a que distancia esta el objeto en cuestion "))
-
-    luzagua_calc= calc_luzagua(kilom_in)
-    print("Tu objeto está a :",luzagua_calc,"Años luz")
-
-else:
-    def calc_luzaire(kilometros):   #Formula para el medio "aire"
-        añosluz = (kilometros/(luzaire*365.25*86400))
-       
-        return añosluz
+distancia_luz = calc_luz(velocidad_medio,kilom_in)
     
-             #Introducimos los kilometros de separacion con el objto
-    kilom_in=float(input("Introduce a que distancia esta el objeto en cuestion "))
+print("Tu objto se situa a:",distancia_luz,"años luz")
+    
 
-    luzaire_calc= calc_luzaire(kilom_in)
-  
-    print("Tu objeto está a :",luzaire_calc,"Años luz")
 
 
 
